@@ -1,4 +1,6 @@
-/* npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch */
+/* 
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch 
+*/
 
 @import "tailwindcss";
 @import '@fontsource/clear-sans';
@@ -10,21 +12,26 @@
     --color-absent: oklch(0.3492 0.0034 286.22);
 };
 
+@font-face{
+    font-family: Clear Sans;
+    src: url(../fonts/clear-sans/WOFF/ClearSans-Regular.woff)
+}
+
 html {
-    font-family: 'Clear Sans',sans-serif;
+    font-family: 'Clear Sans';
     scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Clear Sans', sans-serif;
+    font-family: 'Clear Sans', sans-serif;
 }
 
 .button{
     background-color: grey;
-    min-width: 60px;
-    min-height: 60px;
+    min-width: 64px;
+    min-height: 64px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 12px;
     vertical-align: middle;
     text-transform: uppercase;
 }
@@ -32,4 +39,25 @@ body {
 .text-row{
     gap:10px;
     padding-bottom:10px
+}
+
+.box {
+    min-width: 80px;
+    min-height: 80px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #3a3a3c;
+    /* border-color: darkgray; */
+}
+
+.box-rows{
+    display: flex;
+    gap: 8px 
+}
+
+.box-columns{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 16px;
 }
