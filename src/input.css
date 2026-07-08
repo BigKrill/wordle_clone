@@ -1,3 +1,35 @@
 /* npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch */
 
 @import "tailwindcss";
+@import '@fontsource/clear-sans';
+
+@theme {
+    --color-background: oklch(0.1826 0.002 286.2);
+    --color-correct: oklch(0.5874 0.1112 142.32);
+    --color-present: oklch(0.7032 0.1207 96.69);
+    --color-absent: oklch(0.3492 0.0034 286.22);
+};
+
+html {
+    font-family: 'Clear Sans',sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Clear Sans', sans-serif;
+}
+
+.button{
+    background-color: grey;
+    min-width: 60px;
+    min-height: 60px;
+    padding: 12px;
+    border-radius: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+
+.text-row{
+    gap:10px;
+    padding-bottom:10px
+}

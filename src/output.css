@@ -7,12 +7,13 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-mist-900: oklch(21.8% 0.008 223.9);
-    --color-mist-950: oklch(14.8% 0.004 228.8);
     --color-white: #fff;
     --spacing: 0.25rem;
+    --text-6xl: 3.75rem;
+    --text-6xl--line-height: 1;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-background: oklch(0.1826 0.002 286.2);
   }
 }
 @layer base {
@@ -167,11 +168,41 @@
   .fixed {
     position: fixed;
   }
+  .col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+  .col-span-12 {
+    grid-column: span 12 / span 12;
+  }
+  .container {
+    width: 100%;
+    @media (width >= 40rem) {
+      max-width: 40rem;
+    }
+    @media (width >= 48rem) {
+      max-width: 48rem;
+    }
+    @media (width >= 64rem) {
+      max-width: 64rem;
+    }
+    @media (width >= 80rem) {
+      max-width: 80rem;
+    }
+    @media (width >= 96rem) {
+      max-width: 96rem;
+    }
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .block {
     display: block;
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .table {
     display: table;
@@ -182,27 +213,34 @@
   .resize {
     resize: both;
   }
+  .grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .flex-col {
+    flex-direction: column;
+  }
   .flex-row {
     flex-direction: row;
   }
-  .gap-1 {
-    gap: var(--spacing);
+  .items-center {
+    align-items: center;
   }
-  .gap-10 {
-    gap: calc(var(--spacing) * 10);
-  }
-  .gap-20 {
-    gap: calc(var(--spacing) * 20);
+  .justify-items-center {
+    justify-items: center;
   }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .bg-mist-900 {
-    background-color: var(--color-mist-900);
+  .bg-background {
+    background-color: var(--color-background);
   }
-  .bg-mist-950 {
-    background-color: var(--color-mist-950);
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
+  }
+  .text-6xl {
+    font-size: var(--text-6xl);
+    line-height: var(--tw-leading, var(--text-6xl--line-height));
   }
   .text-white {
     color: var(--color-white);
@@ -221,6 +259,33 @@
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
+}
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(./files/clear-sans-latin-400-normal.woff2) format('woff2'), url(./files/clear-sans-latin-400-normal.woff) format('woff');
+}
+html {
+  font-family: 'Clear Sans',sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Clear Sans', sans-serif;
+}
+.button {
+  background-color: grey;
+  min-width: 60px;
+  min-height: 60px;
+  padding: 12px;
+  border-radius: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.text-row {
+  gap: 10px;
+  padding-bottom: 10px;
 }
 @property --tw-border-style {
   syntax: "*";

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@fontsource/clear-sans": "^5.2.5",
     "@tailwindcss/cli": "^4.3.2",
     "tailwindcss": "^4.3.2"
   }
