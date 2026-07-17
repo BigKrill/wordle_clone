@@ -21,17 +21,29 @@ start()
 
 
 function start(){
-    makeBoard()
+    currentGuess = 1;
+    currentLetter = 0;
+    guessString = [];
+    guess = document.getElementById("guess"+currentGuess)
+
+    for(let i = 0; i < keyboard.children.length; i++){
+        for(let j = 0; j < keyboard.children[i].children.length; j++){
+            keyboard.children[i].children[j].className = "button"
+        }
+    }
+    // console.log(keyboard.children[0].children)
+    makeBoard();
     getWord()
+    console.log(words[wordIndex])
 }
 
 function getWord(){
-    let wordIndex = Math.floor(Math.random() * words.length)
+    wordIndex = Math.floor(Math.random() * words.length)
 }
 
 function makeBoard(){
-    if(document.getElementById("#board")){
-        document.getElementById("#board").remove()
+    while (board.hasChildNodes()) {
+        board.removeChild(board.firstChild);
     }
 
     for(let i = 1; i <= guesses; i++){
@@ -53,38 +65,39 @@ function makeBoard(){
 
 
 function guessWord(){
+    console.log(guessString)
     if(currentGuess <= guesses){
             if(currentLetter == letters){
                 let word = words[wordIndex]
                 word = word.split("")
+
+                // marks every letter as absent
                 for(let i = 0; i < letters; i++){
-                    let correct = false
-                    let present = false
-                    if(word.indexOf(guessString[i]) == i){
-                        correct = true
+                    guess.children[i].className = "box absent"
+                    document.getElementById(guessString[i]).className = "button absent"
+                }
+                
+                // two loops check letters and override the absent letter depending if its correct or present
+                // check for correct letters
+                for(let i = 0; i < letters; i++){
+                    if(guessString[i] == word[i]){
+                        guess.children[i].className = "box correct"
+                        document.getElementById(guessString[i]).className = "button correct"
                         word[i] = ""
-                        document.getElementById(guessString[i]).className += " correct"
-                    } else if (word.indexOf(guessString[i]) != -1){
-                        present = true
+                    }
+                }
+                // check for present letters
+                for(let i = 0; i < letters; i++){
+                    if(word.indexOf(guessString[i]) != -1){
+                        if(guess.children[word.indexOf(guessString[i])].className != "box correct") guess.children[word.indexOf(guessString[i])].className = "box present"
+                        if(document.getElementById(guessString[i]).className != "button correct") document.getElementById(guessString[i]).className = "button present"
                         word[word.indexOf(guessString[i])] = ""
-                        document.getElementById(guessString[i]).className += " present"
-                    }else{
-                        document.getElementById(guessString[i]).className += " absent"
-                    }
-                    
-                    if(correct){
-                        guess.children[i].className += " correct"
-                    }else if(present){
-                        guess.children[i].className += " present"
-                    }else{
-                        guess.children[i].className += " absent"
-                    }
+                    } 
                 }
 
                 currentGuess++
                 currentLetter = 0
                 guessString = []
-                // console.log("Guessed!")
 
                 if(currentGuess > guesses){
                     console.log("All guesses used")
